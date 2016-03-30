@@ -1,51 +1,60 @@
-package classes;
-
-public class Rectangle {
+public class jh {
     private int x1, y1, x2, y2;
 
     public void setPoints(int _x1, int _y1, int _x2, int _y2) {
-        // TODO, check if x, y > 0
-        x1 = _x1;
-        y1 = _y1;
-        x2 = _x2;
-        y2 = _y2;
+        if(_x1>0 && _y1>0 && _x2>0 && _y2>0) {
+            x1 = _x1;
+            y1 = _y1;
+            x2 = _x2;
+            y2 = _y2;
+        }
     }
 
     public int getWidth() {
-        // TODO
-        return 0;
+        int width=((x2>x1)?(x2-x1):(x1-x2));
+        return width;
     }
 
     public int getHeight() {
-        // TODO
-        return 0;
+        int height=((y2>y1)?(y2-y1):(y1-y2));
+        return height;
     }
 
     public int getArea() {
-        // TODO
-        return 0;
+        return getWidth()*getHeight();
     }
 
-    public boolean equals(Rectangle r) {
-        // TODO
+    public boolean equals(jh r) {
+        if(this.getArea()==r.getArea())
+            if((this.x1==r.x1||this.x1==r.x2)&&(this.y1==r.y1||this.y1==r.y2))
+                return true;
         return false;
     }
 
-    public boolean in(Rectangle r) {
-        // TODO
+    public boolean in(jh r) {
+        if(this.getArea()<=r.getArea()) {
+            if (r.x1 < r.x2) {
+                if ((r.x1 <= this.x1 || r.x1 <= this.x2) && (r.x2 >= this.x1 || r.x2 >= this.x2))
+                    return true;
+            } else {
+                if ((r.x1 >= this.x1 || r.x1 >= this.x2) && (r.x2 <= this.x1 || r.x2 <= this.x2))
+                    return true;
+            }
+        }
         return false;
     }
 
-    public boolean overlap(Rectangle r) {
-        // TODO
+    public boolean overlap(jh r) {
+        if(this.x1==r.x1||this.x1==r.x2||this.x2==r.x1||this.x2==r.x2||this.y1==r.y1||this.y1==r.y2||this.y2==r.y1||this.y2==r.y2)
+            return true;
         return false;
     }
 
     public static void main(String[] args) {
-        Rectangle r1 = new Rectangle();
-        Rectangle r2 = new Rectangle();
-        Rectangle r3 = new Rectangle();
-        Rectangle r4 = new Rectangle();
+        jh r1 = new jh();
+        jh r2 = new jh();
+        jh r3 = new jh();
+        jh r4 = new jh();
 
         r1.setPoints(1, 1, 5, 5);
         r2.setPoints(5, 5, 1, 1);
@@ -66,5 +75,4 @@ public class Rectangle {
             System.out.println("r1 and r4 overlap.");
         }
     }
-
 }
