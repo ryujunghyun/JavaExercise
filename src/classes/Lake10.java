@@ -1,8 +1,6 @@
 import java.util.Scanner;
 
-/**
- * Created by jyheo on 2016-04-04.
- */
+
 
 class Fish{
     private String name;
